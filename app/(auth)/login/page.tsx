@@ -33,49 +33,71 @@ export default function LoginPage() {
     router.push("/dashboard")
   }
 
+  const fillDemo = () => {
+    setEmail("admin@example.com")
+    setPassword("password123")
+  }
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50">
-      <div className="w-full max-w-sm rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">Sign in</h1>
-          <p className="mt-1 text-sm text-gray-500">Enter your credentials to continue</p>
+      <div className="w-full max-w-sm space-y-4">
+
+        {/* demo credentials card */}
+        <div className="rounded-xl border border-blue-200 bg-blue-50 px-4 py-3">
+          <p className="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-2">Demo access</p>
+          <div className="flex items-center justify-between">
+            <div className="text-sm text-blue-800 space-y-0.5">
+              <p><span className="font-medium">Email:</span> admin@example.com</p>
+              <p><span className="font-medium">Password:</span> password123</p>
+            </div>
+            <button
+              type="button"
+              onClick={fillDemo}
+              className="text-xs font-medium text-blue-600 hover:text-blue-800 underline underline-offset-2 transition-colors"
+            >
+              Fill in
+            </button>
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="mb-1.5 block text-sm font-medium text-gray-700">Email</label>
-            <Input
-              type="email"
-              placeholder="you@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+        <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
+          <div className="mb-8">
+            <h1 className="text-2xl font-bold text-gray-900">Sign in</h1>
+            <p className="mt-1 text-sm text-gray-500">Enter your credentials to continue</p>
           </div>
 
-          <div>
-            <label className="mb-1.5 block text-sm font-medium text-gray-700">Password</label>
-            <Input
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Email</label>
+              <Input
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
 
-          {error && (
-            <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>
-          )}
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">Password</label>
+              <Input
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
 
-          <Button type="submit" className="w-full" disabled={loading} size="lg">
-            {loading ? "Signing in..." : "Sign in"}
-          </Button>
-        </form>
+            {error && (
+              <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>
+            )}
 
-        <p className="mt-6 text-center text-xs text-gray-400">
-          Demo: admin@example.com / password123
-        </p>
+            <Button type="submit" className="w-full" disabled={loading} size="lg">
+              {loading ? "Signing in..." : "Sign in"}
+            </Button>
+          </form>
+        </div>
       </div>
     </div>
   )
