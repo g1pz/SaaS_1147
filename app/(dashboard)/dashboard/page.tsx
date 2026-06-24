@@ -9,7 +9,7 @@ async function getStats() {
     prisma.revenue.findMany({ orderBy: { month: "asc" } }),
   ])
 
-  const totalRevenue = revenueData.reduce((sum, r) => sum + r.amount, 0)
+  const totalRevenue = revenueData.reduce((sum: number, r) => sum + r.amount, 0)
   const lastMonth = revenueData[revenueData.length - 1]?.amount ?? 0
   const prevMonth = revenueData[revenueData.length - 2]?.amount ?? lastMonth
   const growth = prevMonth ? (((lastMonth - prevMonth) / prevMonth) * 100).toFixed(1) : "0"
